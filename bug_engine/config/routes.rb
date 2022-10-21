@@ -1,3 +1,3 @@
 Bug::Engine.routes.draw do
-  root "bug#bug"
+  get "/bug", to: "bug#bug"
 end
