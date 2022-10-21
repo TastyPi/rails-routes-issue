@@ -1,4 +1,4 @@
 Rails.application.routes.draw do
-  root "app#index"
+  root "test#index"
   mount Bug::Engine, at: "/bug"
 end
