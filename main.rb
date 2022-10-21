@@ -48,7 +48,7 @@ module RouteIssue
     # Doing this instead of having config/routes.rb causes test_path to not be defined in the test
     # routes.draw do
     #   get "/test", to: "test#test"
-    #   mount Bug::Engine, at: "/bug"
+    #   mount Bug::Engine, at: "/bug_mount"
     # end
   end
 end
@@ -61,12 +61,12 @@ class BugTest < ActionDispatch::IntegrationTest
   test "test_paths are correct" do
     # These are correct
     assert_equal "/test", test_path
-    assert_equal "/bug/bug", bug.bug_path
+    assert_equal "/bug_mount/bug", bug.bug_path
 
     # But then you do a request to an engine route
     get bug.bug_path
 
     # And now this breaks. Note that it also breaks using main_app.test_path
-    assert_equal "/test", test_path, "test_path is now returning /bug/test instead of /test"
+    assert_equal "/test", test_path, "test_path is now returning /bug_mount/test instead of /test"
   end
 end
